@@ -1,0 +1,15 @@
+---
+# tasks file for apache
+- name: installation de apache
+  apt:
+    name: "apache2"
+    state: latest
+
+- name: demarrage apache
+  service:
+    name: "apache2"
+    state: started
+    enabled: true
+
+- name: ajout php
+  include: php.yml

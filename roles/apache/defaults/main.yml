@@ -1,0 +1,15 @@
+---
+# defaults file for apache
+php_packages:
+  - php7.4-curl
+  - php7.4-mysql
+  - php7.4-xml
+  - php7.4-mbstring
+  - libapache2-mod-php
+  - php7.4-apcu
+  - php7.4-gd
+  - php7.4-cli
+  - php7.4-bcmath
+  - python3-pymysql
+  - php-mbstring
+  - php-intl

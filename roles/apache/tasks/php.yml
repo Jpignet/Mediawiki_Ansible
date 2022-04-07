@@ -1,0 +1,9 @@
+---
+- name: installation php
+  apt:
+    name: php7.4
+    state: present
+
+- name: librairies php
+  apt: name={{ php_packages }} update_cache=yes state=latest
+  notify: apache2_restart

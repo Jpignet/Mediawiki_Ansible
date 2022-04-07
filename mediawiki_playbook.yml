@@ -1,0 +1,13 @@
+---
+- name: mediawiki playbook
+  hosts: all
+  vars:
+    - db_name: testdb
+    - user_db: root
+    - passwd_db: jean
+    - mediawiki_title: test_wiki_jean
+  roles:
+    - apache
+    - mysql
+    - mediawiki
+  tasks:

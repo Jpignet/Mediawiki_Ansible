@@ -1,0 +1,23 @@
+---
+# tasks file for mediawiki
+- name: Download mediawiki files
+  get_url:
+    url: https://releases.wikimedia.org/mediawiki/1.36/mediawiki-1.36.1.tar.gz
+    dest: /tmp/mediawiki-1.36.1.tar.gz
+
+- name: creer repertoire
+  file:
+    name: /var/lib/mediawiki
+    state: directory
+
+- name: Unarchive a file that is already on the remote machine
+  ansible.builtin.unarchive:
+    src: /tmp/mediawiki-1.36.1.tar.gz
+    dest: /var/lib/mediawiki
+    remote_src: yes
+
+- name: lien symbolique mediawiki
+  file:
+    src: /var/lib/mediawiki
+    dest: /var/www/html/mediawiki
+    state: link

@@ -1,0 +1,33 @@
+---
+# tasks file for mysql
+- name: installation mysql
+  apt:
+    name: "mariadb-server"
+    update_cache: yes
+    state: latest
+
+- name: demarrage mysql
+  service:
+    name: "mariadb"
+    state: started
+    enabled: true
+
+- name: creation de la base de donnee avec les privileges utilisateur
+  mysql_user:
+    name: '{{ user_db }}'
+    password: '{{ passwd_db }}'
+    login_user: '{{ user_db  }}'
+    login_password: '{{ passwd_db }}'
+    host: localhost
+    check_implicit_admin: yes
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    priv: "*.*:ALL,GRANT"
+    state: present
+
+- name: cree une nouvelle table
+  mysql_db:
+    name: '{{ db_name  }}'
+    state: present
+    login_user: '{{ user_db }}'
+    login_password: '{{ passwd_db }}'
+
